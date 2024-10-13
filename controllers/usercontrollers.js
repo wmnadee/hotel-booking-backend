@@ -34,7 +34,7 @@ const User = mongoose.model("Users", userSchema)
 
 export function getUsers(req,res){ 
         res.json({
-            message : "this is the get request"
+            message : "this is the get request."
         }) 
 }
 
