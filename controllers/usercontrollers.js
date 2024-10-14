@@ -59,7 +59,7 @@ export function putUsers(req,res){
 
 export function deleteUsers(req,res){ 
     res.json({
-        message : "this is the delete request"
+        message : "this is the delete request.test"
     }) 
 }
 
