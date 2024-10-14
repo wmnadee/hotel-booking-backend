@@ -30,6 +30,7 @@ const userSchema = mongoose.Schema(
 )
 
 /*database collection model*/
+
 const User = mongoose.model("Users", userSchema) 
 
 export function getUsers(req,res){ 
