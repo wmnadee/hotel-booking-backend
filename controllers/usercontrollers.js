@@ -1,43 +1,14 @@
-import mongoose from "mongoose" 
 import User from '../models/user.js';
 
-/*user schema*/
-/*const userSchema = mongoose.Schema(
-    {
-        email : {
-            type : String,
-            required : true,
-            unique : true
-        },
-        firstName : {
-            type : String
-        },
-        lastName : {
-            type: String
-        },
-        image : {
-            type: String,
-            default : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrpZEneLh1WL_0kpeQEvbvHipkPx22W2hKMg&s"
-        },
-        password : {
-            type : String,
-            required : true
-        },
-        phone : {
-            type : Number
+ export function getUsers(req,res){ 
+       User.find().then(
+
+        (usersList)=>{
+            res.json({
+                list : usersList
+            })
         }
-    }
-)
-*/
-
-/*database collection model*/
-
-const User = mongoose.model("Users", userSchema) 
-
-export function getUsers(req,res){ 
-        res.json({
-            message : "this is the get request."
-        }) 
+       ) 
 }
 
 export function postUsers(req,res){ 
@@ -46,10 +17,24 @@ export function postUsers(req,res){
 
     const newUser = new User(user) /*add new user*/
 
-   /* console.log(user)
-    res.json({
+    newUser.save().then(
+        ()=>{
+            res.json({
+                message : "user created successfully"
+            })
+        }
+    ).catch(
+        ()=>{
+            res.json({
+                message : "user creation failed"
+            })
+        }
+    )
+     /* console.log(user)
+  
+     res.json({
         message : "this is the post request"
-    }) */
+    })  */
 }
 
 export function putUsers(req,res){

@@ -2,6 +2,7 @@ import bodyParser from 'body-parser'
 import express from 'express' 
 import userRouter from './routes/usersRoute.js'
 import mongoose from 'mongoose'
+import galleryItemRouter from './routes/galleryItemRoute.js'
 
 const app = express()
 app.use(bodyParser.json())
@@ -18,7 +19,8 @@ mongoose.connect(connectionString).then(
     }
 ) 
 
-app.use("api/users",userRouter)
+app.use("/api/users",userRouter)
+app.use("/api/galleryItems",galleryItemRouter)
 
 app.get("/",(req,res)=>{
     console.log("get request")
