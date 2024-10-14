@@ -33,6 +33,10 @@ const roomSchema = new mongoose.Schema({
         type : String,
         default: ""
     },
+    amount:{
+        type : Number,
+        default: "$100"
+    }
     notes:{
         type:String,
         default:""

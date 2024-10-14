@@ -1,8 +1,8 @@
 import mongoose from "mongoose" 
-
+import User from '../models/user.js';
 
 /*user schema*/
-const userSchema = mongoose.Schema(
+/*const userSchema = mongoose.Schema(
     {
         email : {
             type : String,
@@ -28,6 +28,7 @@ const userSchema = mongoose.Schema(
         }
     }
 )
+*/
 
 /*database collection model*/
 
