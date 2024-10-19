@@ -3,7 +3,7 @@ import express from 'express'
 import userRouter from './routes/usersRoute.js'
 import mongoose from 'mongoose'
 import galleryItemRouter from './routes/galleryItemRoute.js'
- 
+import jwt from 'jsonwebtoken'
 
 const app = express()
 app.use(bodyParser.json())
@@ -18,7 +18,26 @@ mongoose.connect(connectionString).then(
     ()=>{
         console.log("connection fialed")
     }
-) 
+)
+/*authentication middleware*/
+app.use((req,res,next)=>{
+    const token = req.headers['authorization']?.replace("Bearer ","")
+    console.log(token)
+    if(token){
+        const decoded = jwt.verify(token, 'secret')
+
+        //check if token decoded successfully
+        if(token != null){
+            //attach user into the req
+            req.user = decoded
+            //go to next matching request
+            next()
+        }
+        console.log(decoded)
+    }else{
+        next()
+    }
+})
 
 app.use("/api/users",userRouter)
 app.use("/api/galleryItems",galleryItemRouter) 
